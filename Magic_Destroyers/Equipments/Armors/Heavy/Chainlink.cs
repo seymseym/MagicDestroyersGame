@@ -4,7 +4,30 @@ using System.Text;
 
 namespace Magic_Destroyers.Equipments.Armors.Heavy
 {
-    class Chainlink
+    public class Chainlink
     {
+        private int armorPoints;
+        public int ArmorPoints
+        {
+            get
+            {
+                return armorPoints;
+            }
+            set
+            {
+                if (armorPoints >= 1)
+                {
+                    armorPoints = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(string.Empty, "Armor Point can not be smaller than 1");
+                }
+            }
+        }
+        public Chainlink()
+        {
+
+        }
     }
 }

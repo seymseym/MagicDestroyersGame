@@ -5,10 +5,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Equipments\Armors\Leather\" />
-    <Folder Include="Equipments\Armors\Light\" />
-    <Folder Include="Equipments\Weapons\Blunt\" />
-  </ItemGroup>
-
 </Project>

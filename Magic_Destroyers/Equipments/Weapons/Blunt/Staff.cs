@@ -4,7 +4,36 @@ using System.Text;
 
 namespace Magic_Destroyers.Equipments.Weapons.Blunt
 {
-    class Staff
+    public class Staff
     {
+        private int damage;
+        public int Damage
+        {
+            get
+            {
+                return damage;
+            }
+            set
+            {
+                if (value >= 1)
+                {
+                    damage = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(string.Empty, "damage can not be smaller than 1");
+
+                }
+            }
+        }
+        public Staff()
+        {
+
+        }
+
+        public void Empower()
+        {
+
+        }
     }
 }
