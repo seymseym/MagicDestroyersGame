@@ -1,4 +1,5 @@
-﻿using Magic_Destroyers.Equipments.Armors.Heavy;
+﻿using Magic_Destroyers.Enumerations;
+using Magic_Destroyers.Equipments.Armors.Heavy;
 using Magic_Destroyers.Equipments.Weapons.Blunt;
 using System;
 using System.Collections.Generic;
@@ -8,24 +9,33 @@ namespace Magic_Destroyers.Characters.Melee
 {
     public class Knight
     {
+        private const string DEFAULT_NAME = "Holly Knight";
+        private const int DEFAULT_LEVEL = 1;
+        private const int DEFAULT_HEALTHPOINTS = 120;
+        private const int DEFAULT_ABILITYPOINTS = 100;
+        private const Faction DEFAULT_FACTION = Faction.Melee;
+
+        private readonly Chainlink DEFAULT_BODYARMOR = new Chainlink();
+        private readonly Hammer DEFAULT_WEAPON = new Hammer();
+
         private int abilityPoints;
         private int healtPoints;
         private int level;
 
-        private string faction;
+        private Faction faction;
         private string name;
 
         private Chainlink bodyArmor;
         public Hammer weapon;
 
         public Knight()
-            :this("Holly Knight", 1, 120)
+            :this(DEFAULT_NAME, DEFAULT_LEVEL, DEFAULT_HEALTHPOINTS)
         {
 
         }
 
         public Knight(string name, int level)
-            :this(name, level, 120)
+            :this(name, level, DEFAULT_ABILITYPOINTS)
         {
 
         }
@@ -35,10 +45,10 @@ namespace Magic_Destroyers.Characters.Melee
             this.Name = name;
             this.Level = level;
             this.HealthPoints = healthPoints;
-            this.Faction = "Melee";
+            this.Faction = DEFAULT_FACTION;
             this.AbilityPoints = 100;
-            this.BodyArmor = new Chainlink();
-            this.Weapon = new Hammer();
+            this.BodyArmor = DEFAULT_BODYARMOR;
+            this.Weapon = DEFAULT_WEAPON;
         }
 
         public int AbilityPoints
@@ -111,7 +121,7 @@ namespace Magic_Destroyers.Characters.Melee
                 }
             }
         }
-        public string Faction
+        public Faction Faction
         {
             get
             {
@@ -119,14 +129,8 @@ namespace Magic_Destroyers.Characters.Melee
             }
             set
             {
-                if (value == "Melee" || value == "Spellcaster")
-                {
                     this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "The faction should be either Melee or Spellcaster");
-                }
+
             }
         }
 

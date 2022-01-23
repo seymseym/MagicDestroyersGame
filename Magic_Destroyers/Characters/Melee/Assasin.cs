@@ -9,7 +9,7 @@ namespace Magic_Destroyers.Characters.Melee
 {
     public class Assasin
     {
-        private const string DEFAULT_NAME = "Boby";
+        private const string DEFAULT_NAME = "Boby the Assasin";
         private const int DEFAULT_LEVEL = 1;
         private const int DEFAULT_HEALTHPOINTS = 120;
         private const int DEFAULT_ABILITYPOINTS = 100;

@@ -1,4 +1,5 @@
-﻿using Magic_Destroyers.Equipments.Armors.Light;
+﻿using Magic_Destroyers.Enumerations;
+using Magic_Destroyers.Equipments.Armors.Light;
 using Magic_Destroyers.Equipments.Weapons.Blunt;
 using Magic_Destroyers.Equipments.Weapons.Sharp;
 using System;
@@ -9,25 +10,34 @@ namespace Magic_Destroyers.Characters.Spellcasters
 {
     public class Mage
     {
+        private const string DEFAULT_NAME = "Gargamel the Mage";
+        private const int DEFAULT_LEVEL = 1;
+        private const int DEFAULT_HEALTHPOINTS = 120;
+        private const int DEFAULT_ABILITYPOINTS = 100;
+        private const Faction DEFAULT_FACTION = Faction.Spellcasters;
+
+        private readonly ClothRobe DEFAULT_BODYARMOR = new ClothRobe();
+        private readonly Staff DEFAULT_WEAPON = new Staff();
+
         private int abilityPoints;
         private int healtPoints;
         private int level;
 
-        private string faction;
+        private Faction faction;
         private string name;
 
         private ClothRobe bodyArmor;
         private Staff weapon;
 
         public Mage() // Default constructor 
-            : this("Spellcaster - Mage", 1) // Chaining this ctor to the second ctor
+            : this(DEFAULT_NAME, DEFAULT_LEVEL) // Chaining this ctor to the second ctor
         {
 
         }
 
         // It has default initial values except name and level
         public Mage(string name, int level)
-            : this(name, level, 120) // Chaining this ctor to the 3rd ctor
+            : this(name, level, DEFAULT_HEALTHPOINTS) // Chaining this ctor to the 3rd ctor
         {
 
         }
@@ -37,10 +47,10 @@ namespace Magic_Destroyers.Characters.Spellcasters
             this.Name = name;
             this.Level = level;
             this.HealthPoints = healthPoints;
-            this.Faction = "Spellcaster";
-            this.AbilityPoints = 100;
-            this.Weapon = new Staff();
-            this.BodyArmor = new ClothRobe();
+            this.Faction = DEFAULT_FACTION;
+            this.AbilityPoints = DEFAULT_ABILITYPOINTS;
+            this.Weapon = DEFAULT_WEAPON;
+            this.BodyArmor = DEFAULT_BODYARMOR;
         }
 
         public int AbilityPoints
@@ -113,7 +123,7 @@ namespace Magic_Destroyers.Characters.Spellcasters
                 }
             }
         }
-        public string Faction
+        public Faction Faction
         {
             get
             {
@@ -121,14 +131,7 @@ namespace Magic_Destroyers.Characters.Spellcasters
             }
             set
             {
-                if (value == "Melee" || value == "Spellcaster")
-                {
                     this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "The faction should be either Melee or Spellcaster");
-                }
             }
         }
 

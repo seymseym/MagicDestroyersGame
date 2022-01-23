@@ -1,4 +1,5 @@
-﻿using Magic_Destroyers.Equipments.Armors.Heavy;
+﻿using Magic_Destroyers.Enumerations;
+using Magic_Destroyers.Equipments.Armors.Heavy;
 using Magic_Destroyers.Equipments.Weapons.Sharp;
 using System;
 using System.Collections.Generic;
@@ -8,25 +9,35 @@ namespace Magic_Destroyers.Characters.Melee
 {
     public class Warrior
     {
+
+        private const string DEFAULT_NAME = "Chucky the Warrior";
+        private const int DEFAULT_LEVEL = 1;
+        private const int DEFAULT_HEALTHPOINTS = 120;
+        private const int DEFAULT_ABILITYPOINTS = 100;
+        private const Faction DEFAULT_FACTION = Faction.Melee;
+
+        private readonly Chainlink DEFAULT_BODYARMOR = new Chainlink();
+        private readonly Axe DEFAULT_WEAPON = new Axe();
+
         private int abilityPoints;
         private int healtPoints;
         private int level;
 
-        private string faction;
+        private Faction faction;
         private string name;
 
         private Chainlink bodyArmor;
         private Axe weapon;
 
         public Warrior() // Default constructor 
-            : this("Meele - Warrior", 1) // Chaining this ctor to the second ctor
+            : this(DEFAULT_NAME, DEFAULT_LEVEL) // Chaining this ctor to the second ctor
         {
 
         }
 
         // It has default initial values except name and level
         public Warrior(string name, int level)
-            : this(name, level, 120) // Chaining this ctor to the 3rd ctor
+            : this(name, level, DEFAULT_HEALTHPOINTS) // Chaining this ctor to the 3rd ctor
         {
 
         }
@@ -36,10 +47,10 @@ namespace Magic_Destroyers.Characters.Melee
             this.Name = name;
             this.Level = level;
             this.HealthPoints = healthPoints;
-            this.Faction = "Melee";
-            this.AbilityPoints = 100;
-            this.Weapon = new Axe();
-            this.BodyArmor = new Chainlink();
+            this.Faction = DEFAULT_FACTION;
+            this.AbilityPoints = DEFAULT_ABILITYPOINTS;
+            this.Weapon = DEFAULT_WEAPON;
+            this.BodyArmor = DEFAULT_BODYARMOR;
         }
 
         public int AbilityPoints
@@ -112,7 +123,7 @@ namespace Magic_Destroyers.Characters.Melee
                 }
             }
         }
-        public string Faction
+        public Faction Faction
         {
             get
             {
@@ -120,14 +131,7 @@ namespace Magic_Destroyers.Characters.Melee
             }
             set
             {
-                if (value == "Melee" || value == "Spellcaster")
-                {
                     this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "The faction should be either Melee or Spellcaster");
-                }
             }
         }
 
