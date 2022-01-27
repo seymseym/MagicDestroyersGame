@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Magic_Destroyers.Characters.Spellcasters
 {
-    public class Mage
+    public class Mage : Spellcaster
     {
         private const string DEFAULT_NAME = "Gargamel the Mage";
         private const int DEFAULT_LEVEL = 1;
@@ -19,12 +19,6 @@ namespace Magic_Destroyers.Characters.Spellcasters
         private readonly ClothRobe DEFAULT_BODYARMOR = new ClothRobe();
         private readonly Staff DEFAULT_WEAPON = new Staff();
 
-        private int abilityPoints;
-        private int healtPoints;
-        private int level;
-
-        private Faction faction;
-        private string name;
 
         private ClothRobe bodyArmor;
         private Staff weapon;
@@ -44,42 +38,22 @@ namespace Magic_Destroyers.Characters.Spellcasters
 
         public Mage(string name, int level, int healthPoints)
         {
-            this.Name = name;
-            this.Level = level;
-            this.HealthPoints = healthPoints;
-            this.Faction = DEFAULT_FACTION;
-            this.AbilityPoints = DEFAULT_ABILITYPOINTS;
+            base.Name = name;
+            base.Level = level;
+            base.HealthPoints = healthPoints;
+            base.Faction = DEFAULT_FACTION;
+            this.ManaPoints = 150;
             this.Weapon = DEFAULT_WEAPON;
             this.BodyArmor = DEFAULT_BODYARMOR;
         }
-
-        public int AbilityPoints
+        public override int HealthPoints
         {
-            get
-            {
-                return abilityPoints;
-            }
+            get { return base.HealthPoints; }
             set
             {
                 if (value >= 0 && value <= 100)
                 {
-                    abilityPoints = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, it should be min 0 and max 10");
-                }
-            }
-        }
-
-        public int HealthPoints
-        {
-            get { return healtPoints; }
-            set
-            {
-                if (value >= 0 && value <= 120)
-                {
-                    healtPoints = value;
+                    HealthPoints = value;
                 }
                 else
                 {
@@ -87,54 +61,6 @@ namespace Magic_Destroyers.Characters.Spellcasters
                 }
             }
         }
-
-        public int Level
-        {
-            get { return level; }
-            set
-            {
-                if (value >= 0)
-                {
-                    level = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, this can't be smaller than 0");
-                }
-
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                if (value.Length >= 3 && value.Length <= 12)
-                {
-                    this.name = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "Inappropriate length of name, name should be between 3 and 12 characters.");
-                }
-            }
-        }
-        public Faction Faction
-        {
-            get
-            {
-                return this.faction;
-            }
-            set
-            {
-                    this.faction = value;
-            }
-        }
-
         public ClothRobe BodyArmor
         {
             get { return bodyArmor; }

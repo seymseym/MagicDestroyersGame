@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Magic_Destroyers.Characters.Spellcasters
 {
-    public class Druid
+    public class Druid : Spellcaster
     {
         private const string DEFAULT_NAME = "Android the Druid";
         private const int DEFAULT_LEVEL = 1;
@@ -17,13 +17,6 @@ namespace Magic_Destroyers.Characters.Spellcasters
 
         private readonly LightLeatherVest DEFAULT_BODYARMOR = new LightLeatherVest();
         private readonly Staff DEFAULT_WEAPON = new Staff();
-
-        private int abilityPoints;
-        private int healtPoints;
-        private int level;
-
-        private Faction faction;
-        private string name;
 
         private LightLeatherVest bodyArmor;
         private Staff weapon;
@@ -43,94 +36,47 @@ namespace Magic_Destroyers.Characters.Spellcasters
 
         public Druid(string name, int level, int healthPoints)
         {
-            this.Name = name;
-            this.Level = level;
-            this.HealthPoints = healthPoints;
+            base.Name = name;
+            base.Level = level;
+            base.HealthPoints = healthPoints;
             this.Faction = DEFAULT_FACTION;
-            this.AbilityPoints = DEFAULT_ABILITYPOINTS;
+            base.ManaPoints = 100;
             this.Weapon = DEFAULT_WEAPON;
             this.BodyArmor = DEFAULT_BODYARMOR;
         }
 
-        public int AbilityPoints
+        public override int HealthPoints
+        {
+            get { return base.HealthPoints; }
+            set
+            {
+                if (value >= 0 && value <= 110)
+                {
+                    HealthPoints = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, this can't be smaller than 0");
+                }
+            }
+        }
+
+        public override int ManaPoints 
         {
             get
             {
-                return abilityPoints;
+                return base.ManaPoints;
             }
             set
             {
                 if (value >= 0 && value <= 100)
                 {
-                    abilityPoints = value;
+                    base.ManaPoints = value;
                 }
                 else
                 {
                     throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, it should be min 0 and max 10");
                 }
-            }
-        }
-
-        public int HealthPoints
-        {
-            get { return healtPoints; }
-            set
-            {
-                if (value >= 0 && value <= 120)
-                {
-                    healtPoints = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, this can't be smaller than 0");
-                }
-            }
-        }
-
-        public int Level
-        {
-            get { return level; }
-            set
-            {
-                if (value >= 0)
-                {
-                    level = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, this can't be smaller than 0");
-                }
-
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                if (value.Length >= 3 && value.Length <= 12)
-                {
-                    this.name = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "Inappropriate length of name, name should be between 3 and 12 characters.");
-                }
-            }
-        }
-        public Faction Faction
-        {
-            get
-            {
-                return faction;
-            }
-            set
-            {
-                    faction = value;
             }
         }
 
